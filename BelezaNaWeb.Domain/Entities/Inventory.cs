@@ -10,7 +10,7 @@ namespace BelezaNaWeb.Domain.Entities
         private readonly IList<Warehouse> _warehouses;
 
         public Inventory() {
-            this._warehouses = new List<Warehouse>();
+            _warehouses = new List<Warehouse>();
         }
 
 
@@ -18,17 +18,17 @@ namespace BelezaNaWeb.Domain.Entities
         public int quantity { 
             get {
                 var total = 0;
-                foreach (var warehouse in this.warehouses)
+                foreach (var warehouse in warehouses)
                 {
                     total += warehouse.quantity;
                 }
                 return total;
             }
         }
-        public IReadOnlyCollection<Warehouse> warehouses => this._warehouses.ToArray();
+        public IReadOnlyCollection<Warehouse> warehouses => _warehouses.ToArray();
 
         public void add(Warehouse warehouse) {
-            this._warehouses.Add(warehouse);
+            _warehouses.Add(warehouse);
         }
     }
 }

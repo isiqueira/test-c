@@ -16,7 +16,7 @@ namespace BelezaNaWeb.Domain.Entities
         public bool isMarketable { 
             get {
                 //Um produto é marketable sempre que seu inventory.quantity for maior que 0
-                return this.inventory.quantity > 0;
+                return inventory.quantity > 0;
             }
         }
     }

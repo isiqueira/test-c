@@ -10,23 +10,23 @@ namespace BelezaNaWeb.Infra.Repositories {
         List<Product> products = new List<Product>();
 
         public bool checkSkuExists(int sku) {
-            var product = this.products.FirstOrDefault(x => x.sku == sku);
+            var product = products.FirstOrDefault(x => x.sku == sku);
             return !(product == null);
         }
 
         public void save(Product product) {
-            this.products.Add(product);
+            products.Add(product);
         }
 
         public bool update(Product product) {
             //Como os dados não estão sendo persistidos, optei por remover o item e adicionar novo no update
-            this.products.RemoveAll(p => p.sku == product.sku);
-            this.products.Add(product);
+            products.RemoveAll(p => p.sku == product.sku);
+            products.Add(product);
             return true;
         }
 
         public ProductResult getProduct(int sku) {
-            var product = this.products.FirstOrDefault(p => p.sku == sku);
+            var product = products.FirstOrDefault(p => p.sku == sku);
             var inventoryResult = new InventoryResult();
             if (product != null)
             {
@@ -44,7 +44,7 @@ namespace BelezaNaWeb.Infra.Repositories {
         public List<ProductResult> getAll() {
             var productsResult = new List<ProductResult>();
             
-            foreach (var product in this.products) {
+            foreach (var product in products) {
                 var inventoryResult = new InventoryResult();
                 foreach (var warewouse in product.inventory.warehouses) {
                     inventoryResult.warehouses.Add(getWarehouseResult(warewouse));
@@ -56,7 +56,7 @@ namespace BelezaNaWeb.Infra.Repositories {
         }
 
         public bool delete(int sku) {
-            return this.products.RemoveAll(p => p.sku == sku) > 0;
+            return products.RemoveAll(p => p.sku == sku) > 0;
         }
 
         private WarehouseResult getWarehouseResult(Warehouse warewouse) => new WarehouseResult {
