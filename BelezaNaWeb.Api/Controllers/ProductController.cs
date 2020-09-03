@@ -24,14 +24,14 @@ namespace BelezaNaWeb.Api.Controllers {
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult getAll() {
-            return Ok(this.repository.getAll());
+            return Ok(repository.getAll());
         }
 
         [HttpGet]
         [Route("{sku}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult getBySku([FromRoute]int sku) {
-            var product = this.repository.getProduct(sku);
+            var product = repository.getProduct(sku);
             return product != null ? Ok(product): (IActionResult)NotFound(product);
         }
 
@@ -41,7 +41,7 @@ namespace BelezaNaWeb.Api.Controllers {
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult post([FromBody]CreateProductCommand command) {
-            var result = (CommandResult)this.handler.handle(command);
+            var result = (CommandResult)handler.handle(command);
             return result.success ? Ok(result) : (IActionResult)BadRequest(result);
         }
 
@@ -53,7 +53,7 @@ namespace BelezaNaWeb.Api.Controllers {
         public IActionResult put([FromBody]UpdateProductCommand command, [FromRoute]int sku) {
             //Forçando a SKU informada na Rota
             command.sku = sku; 
-            var result = (CommandResult)this.handler.handle(command);
+            var result = (CommandResult)handler.handle(command);
             return result.success ? Ok(result) : (IActionResult)BadRequest(result);
         }
 
@@ -63,7 +63,7 @@ namespace BelezaNaWeb.Api.Controllers {
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult delete([FromRoute]int sku) {
             var command = new RemoveProductCommand { sku = sku };
-            var result = (CommandResult)this.handler.handle(command);
+            var result = (CommandResult)handler.handle(command);
             return result.success ? Ok(result) : (IActionResult)BadRequest(result);
         }
     }

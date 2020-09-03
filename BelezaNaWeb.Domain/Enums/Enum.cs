@@ -17,7 +17,7 @@ namespace BelezaNaWeb.Domain.Enums
             this.name = name;
         }
 
-        public override string ToString() => this.name;
+        public override string ToString() => name;
 
         public static IEnumerable<T> getAll<T>() where T : Enum
         {
@@ -35,13 +35,13 @@ namespace BelezaNaWeb.Domain.Enums
             if (otherValue == null)
                 return false;
 
-            var typeMatches = this.GetType().Equals(obj.GetType());
-            var valueMatches = this.id.Equals(otherValue.id);
+            var typeMatches = GetType().Equals(obj.GetType());
+            var valueMatches = id.Equals(otherValue.id);
 
             return typeMatches && valueMatches;
         }
 
-        public int CompareTo(object other) => this.id.CompareTo(((Enum)other).id);
+        public int CompareTo(object other) => id.CompareTo(((Enum)other).id);
 
     }
 }

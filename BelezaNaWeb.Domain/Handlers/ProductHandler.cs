@@ -39,10 +39,10 @@ namespace BelezaNaWeb.Domain.Handlers
             AddNotifications(command.Notifications);
         
             if (!Invalid) {
-                this.productRepository.save(product);
+                productRepository.save(product);
                 return new CommandResult(true, "Produto Regitrado com êxito", command); 
             } else
-                return new CommandResult(false, "Por favor, corrija os campos abaixo", this.Notifications);
+                return new CommandResult(false, "Por favor, corrija os campos abaixo", Notifications);
 
         }
 
@@ -60,20 +60,20 @@ namespace BelezaNaWeb.Domain.Handlers
             AddNotifications(command.Notifications);
             
             if (!Invalid) {
-                this.productRepository.update(product);
+                productRepository.update(product);
                 return new CommandResult(true, "Produto Regitrado com êxito", command);
             } else
-                return new CommandResult(false, "Por favor, corrija os campos abaixo", this.Notifications);
+                return new CommandResult(false, "Por favor, corrija os campos abaixo", Notifications);
 
         }
 
         public ICommandResult handle(RemoveProductCommand command) {
             AddNotifications(command.Notifications);
 
-            if (this.Invalid)
-                return new CommandResult(false, "Por favor, corrija os campos abaixo", this.Notifications);
+            if (Invalid)
+                return new CommandResult(false, "Por favor, corrija os campos abaixo", Notifications);
 
-            var deleted = this.productRepository.delete(command.sku);
+            var deleted = productRepository.delete(command.sku);
             return deleted ? new CommandResult(true, "Produto removido com êxito", command) : new CommandResult(false, "sku não encontrada", command);
         }
     }
