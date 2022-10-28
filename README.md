@@ -1,5 +1,5 @@
 ### Backend Test
-[![SonarCloud](https://github.com/isiqueira/test-c/actions/workflows/build.yml/badge.svg)](https://github.com/isiqueira/test-c/actions/workflows/build.yml)
+[![SonarCloud](https://github.com/isiqueira/test-c/actions/workflows/build.yml/badge.svg)](https://github.com/isiqueira/test-c/actions/workflows/build.yml) [![.NET](https://github.com/isiqueira/test-c/actions/workflows/dotnet.yml/badge.svg)](https://github.com/isiqueira/test-c/actions/workflows/dotnet.yml)
 
 Esta é uma avaliação básica de código.
 
